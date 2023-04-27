@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pages\Home;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,6 @@ class HomeController extends Controller
         $user = Auth::user();
         $userLink = $user->link;
 
-        return view('home', compact('userLink'));
+        return view('pages.home.home', compact('userLink'));
     }
 }

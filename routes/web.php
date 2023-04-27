@@ -20,7 +20,8 @@ Route::get('/',  [App\Http\Controllers\Auth\RegisterController::class, 'showRegi
 Route::post('/register',  [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
 Route::post('/logout',  [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/home', [App\Http\Controllers\Pages\Home\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::get('/A/{link}', [App\Http\Controllers\Pages\A\AController::class, 'a'])->middleware('is_block_unique_link')->name('a');
+Route::get('/A/{link}/recreate', [App\Http\Controllers\Pages\A\RecreateLinkController::class, 'recreate'])->middleware('is_block_unique_link')->name('a.recreate');
 
