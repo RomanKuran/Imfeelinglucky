@@ -22,6 +22,8 @@ Route::post('/logout',  [App\Http\Controllers\Auth\LoginController::class, 'logo
 
 Route::get('/home', [App\Http\Controllers\Pages\Home\HomeController::class, 'index'])->middleware('auth')->name('home');
 
-Route::get('/A/{link}', [App\Http\Controllers\Pages\A\AController::class, 'a'])->middleware('is_block_unique_link')->name('a');
-Route::get('/A/{link}/recreate', [App\Http\Controllers\Pages\A\RecreateLinkController::class, 'recreate'])->middleware('is_block_unique_link')->name('a.recreate');
-
+Route::group(['middleware' => ['is_block_unique_link']], function () {
+    Route::get('/A/{link}', [App\Http\Controllers\Pages\A\AController::class, 'a'])->name('a');
+    Route::get('/A/{link}/recreate', [App\Http\Controllers\Pages\A\RecreateLinkController::class, 'recreate'])->name('a.recreate');
+    Route::get('/A/{link}/deactivate', [App\Http\Controllers\Pages\A\DeactivateLinkController::class, 'deactivate'])->name('a.deactivate');
+});

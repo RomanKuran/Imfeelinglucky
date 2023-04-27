@@ -12,10 +12,10 @@ class RecreateLinkController extends Controller
     // We rebuild the link and redirect the user to page "A"
     public function recreate()
     {
+        $user = Auth::user();
+
         $currentDateTime = Carbon::now()->toDateTimeString();
         $currentTimestamp = Carbon::parse($currentDateTime)->timestamp;
-
-        $user = Auth::user();
 
         $link = $user->id . $currentTimestamp;
 

@@ -23,7 +23,7 @@
                             </button>
                         </form>
 
-                        <form action="" method="get">
+                        <form action="{{ route('a.deactivate', ['link' => $userLink]) }}" method="get">
                             <button>
                                 Deactivate
                             </button>
