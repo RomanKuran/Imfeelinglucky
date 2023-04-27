@@ -20,6 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'phonenumber',
+        'link',
+        'linkExpirationDate'
     ];
 
     /**

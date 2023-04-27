@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\PhoneNumber;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -64,9 +65,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'phonenumber' => $data['phonenumber'],
         ]);
+
+        // Generation of a unique URL and the date until which it will be valid
+        $currentDateTime = Carbon::now()->addDays(7)->toDateTimeString();
+        $currentTimestamp = Carbon::parse($currentDateTime)->timestamp;
+
+        $user->update([
+            'link' => $user->id . $currentTimestamp,
+            'linkExpirationDate' => $currentDateTime
+        ]);
+        // ----
+
+        return $user;
     }
 }

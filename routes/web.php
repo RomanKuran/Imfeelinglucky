@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-
 Route::get('/',  [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm']);
 Route::post('/register',  [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
 Route::post('/logout',  [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
