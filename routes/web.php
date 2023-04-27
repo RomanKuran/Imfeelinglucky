@@ -16,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/',  [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm']);
+Route::get('/',  [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('main');
 Route::post('/register',  [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
 Route::post('/logout',  [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+
+Route::get('/A/{link}', [App\Http\Controllers\Pages\A\AController::class, 'a'])->middleware('is_block_unique_link')->name('a');
+
