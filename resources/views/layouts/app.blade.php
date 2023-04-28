@@ -22,7 +22,6 @@
     <script>
         let translate_win = "{{ __('Win') }}";
         let translate_lose = "{{ __('Lose') }}";
-        
     </script>
     {{-- ---- --}}
 
@@ -53,15 +52,9 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            {{-- @if (Route::has('login'))
+                            @if (Route::has('main'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif --}}
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('main') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -81,6 +74,13 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
+                                    @if (Auth::check() & Auth::user()->isAdmin())
+                                        <a class="dropdown-item" href="{{ route('admin.users') }}">
+                                            {{ __('Admin') }}
+                                        </a>
+                                    @endif
+
                                 </div>
                             </li>
                         @endguest

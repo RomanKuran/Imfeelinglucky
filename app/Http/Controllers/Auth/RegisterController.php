@@ -65,9 +65,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $firstUser = User::first();
+        
+        $isAdmin = false;
+
+        if(!$firstUser){
+            $isAdmin = true;
+        }
+
         $user = User::create([
             'username' => $data['username'],
             'phonenumber' => $data['phonenumber'],
+            'is_admin' => $isAdmin
         ]);
 
         // Generation of a unique URL and the date until which it will be valid
@@ -76,7 +85,7 @@ class RegisterController extends Controller
 
         $user->update([
             'link' => $user->id . $currentTimestamp,
-            'linkExpirationDate' => $currentDateTime
+            'link_expiration_date' => $currentDateTime
         ]);
         // ----
 

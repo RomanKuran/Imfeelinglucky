@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('link')->nullable()->change();
-            $table->timestamp('linkExpirationDate')->nullable()->change();
+            $table->dropColumn('linkExpirationDate');
         });
     }
 
@@ -27,8 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('link')->change();
-            $table->timestamp('linkExpirationDate')->change();
+            $table->timestamp('linkExpirationDate', 6)->nullable();
         });
     }
 };

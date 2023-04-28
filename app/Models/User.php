@@ -21,7 +21,8 @@ class User extends Authenticatable
         'username',
         'phonenumber',
         'link',
-        'linkExpirationDate'
+        'link_expiration_date',
+        'is_admin'
     ];
 
     /**
@@ -36,5 +37,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany('App\Models\History', 'user_id', 'id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin == 1;
     }
 }

@@ -25,7 +25,7 @@ class IsBlockUniqueLink
             $result = $this->checkDate($user);
 
             if ($result) {
-                Auth::login($user);
+                Auth::login($user, true);
                 return $next($request);
             } else {
                 return redirect()->route('main');
@@ -38,7 +38,7 @@ class IsBlockUniqueLink
     // The function of comparing today's date and the date to which the link is valid
     private function checkDate($user)
     {
-        $linkExpirationDate = $user->linkExpirationDate;
+        $linkExpirationDate = $user->link_expiration_date;
         $currentDateTime = Carbon::now()->toDateTimeString();
 
         $linkExpirationDate = Carbon::parse($linkExpirationDate);

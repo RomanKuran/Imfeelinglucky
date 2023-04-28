@@ -14,11 +14,11 @@ class DeactivateLinkController extends Controller
         $user = Auth::user();
         $link = $user->link;
 
-        $linkExpirationDate = $user->linkExpirationDate;
+        $linkExpirationDate = $user->link_expiration_date;
         $deactivateLinkExpirationDate = Carbon::parse($linkExpirationDate)->subDays(8);
 
         $user->update([
-            'linkExpirationDate' => $deactivateLinkExpirationDate
+            'link_expiration_date' => $deactivateLinkExpirationDate
         ]);
 
         return redirect()->route('main', ['link' => $link]);
