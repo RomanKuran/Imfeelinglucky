@@ -26,4 +26,6 @@ Route::group(['middleware' => ['is_block_unique_link']], function () {
     Route::get('/A/{link}', [App\Http\Controllers\Pages\A\AController::class, 'a'])->name('a');
     Route::get('/A/{link}/recreate', [App\Http\Controllers\Pages\A\RecreateLinkController::class, 'recreate'])->name('a.recreate');
     Route::get('/A/{link}/deactivate', [App\Http\Controllers\Pages\A\DeactivateLinkController::class, 'deactivate'])->name('a.deactivate');
+
+    Route::post('/A/{link}/createHistory', [App\Http\Controllers\Pages\A\CreateHistoryController::class, 'create'])->name('a.createHistory');
 });
