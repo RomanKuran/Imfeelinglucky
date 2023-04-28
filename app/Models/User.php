@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'username',
+        'phonenumber',
+        'link',
+        'link_expiration_date',
+        'is_admin'
     ];
 
     /**
@@ -29,16 +31,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function orders()
+    {
+        return $this->hasMany('App\Models\History', 'user_id', 'id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin == 1;
+    }
 }
