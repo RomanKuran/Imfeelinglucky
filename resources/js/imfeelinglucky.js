@@ -13,18 +13,18 @@ function imfeelinglucky() {
 
     // generate random number
     let random_number = Math.floor(Math.random() * 1000) + 1;
-    $('.js-random-number').text(random_number);
+    $('.js-container-result-imfeelinglucky .js-random-number').text(random_number);
     // ----
 
     // check winning status
     let amount_of_winning = 0;
     let winning_status = null;
     if (random_number % 2 == 1) {
-        $('.js-winning-status').text(translate_lose);
+        $('.js-container-result-imfeelinglucky .js-winning-status').text(translate_lose);
         winning_status = false;
-        $('.js-amount-of-winning').text(0);
+        $('.js-container-result-imfeelinglucky .js-amount-of-winning').text(0);
     } else {
-        $('.js-winning-status').text(translate_win);
+        $('.js-container-result-imfeelinglucky .js-winning-status').text(translate_win);
         winning_status = true;
         amount_of_winning = findResultWining(random_number);
     }
@@ -74,7 +74,7 @@ function findResultWining(random_number) {
     }
     amount_of_winning = amount_of_winning.toFixed(2);
 
-    $('.js-amount-of-winning').text(amount_of_winning);
+    $('.js-container-result-imfeelinglucky .js-amount-of-winning').text(amount_of_winning);
 
     return amount_of_winning;
 }

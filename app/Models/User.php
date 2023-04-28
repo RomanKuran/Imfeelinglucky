@@ -32,4 +32,9 @@ class User extends Authenticatable
     protected $hidden = [
         'remember_token',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany('App\Models\History', 'user_id', 'id');
+    }
 }
